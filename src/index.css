@@ -14,7 +14,7 @@
   justify-content: center;
   width: 100%;
   height: 100vh;
-  background-color: var(--root-background-color);
+  background: linear-gradient(#10439F, #874CCC, #C65BCF, #F27BBD);
 }
 
 h1 {

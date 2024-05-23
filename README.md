@@ -1,4 +1,5 @@
 # Drum Machine
+I'm gonna use vaporwave for the styling on this one
 
 Libraries and Frameworks used:
   React
