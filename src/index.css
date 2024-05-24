@@ -17,6 +17,12 @@
   background: linear-gradient(#10439F, #874CCC, #C65BCF, #F27BBD);
 }
 
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
 h1 {
   color: #F27BBD;
 }
