@@ -5,6 +5,7 @@ import * as THREE from 'three'
 import './index.css'
 import grid from './assets/myGrid.jpg'
 
+const canvas = document.getElementById("background");
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ 
@@ -53,6 +54,16 @@ function animate() {
 }
 
 animate();
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize( window.innerWidth, window.innerHeight );
+});
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
