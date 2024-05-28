@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useState } from 'react'
 import * as THREE from 'three'
 import cloudImg from './assets/Images/vaporwaveCloud.png'
 import grid from './assets/Images/myGrid.jpg'
@@ -12,33 +13,43 @@ import kicknHat from './assets/Audio/Kick-n\'-Hat.mp3'
 import openHH from './assets/Audio/Open-HH.mp3'
 import closedHH from './assets/Audio/Closed-HH.mp3'
 
-function DrumPad({ id, audio }) {
-  const handleClick = () => {
-    const audio = document.querySelector(`audio[ id="${ id }" ]`); 
-    audio.play();
-  };
-
+function DrumPad({ id, audio, handleClick, displayname }) {
   return (
-    <button id={ id } className="drum-pad" onClick={ handleClick }><audio id={ id } src={ audio }></audio>{ id }</button>
+    <button 
+      id={ id } 
+      className="drum-pad" 
+      onClick={ handleClick }
+    >
+      <audio id={ id } className="clip" src={ audio } displayname={ displayname }></audio>
+      { id }
+    </button>
   );
 }
 
 function SoundBoard() {
+  const [ displayText, setDisplayText ] = useState("");
+
+  const handleClick = (event) => {
+    const audio = document.querySelector(`audio[ id="${ event.target.id }" ]`); 
+
+    audio.play();
+    setDisplayText(audio.attributes.displayName.value);
+  }
 
   return (
   <div id="drum-machine">
     <div className="drum-pads">
-      <DrumPad id="Q" audio={ heater1 } />
-      <DrumPad id="W" audio={ heater2 } />
-      <DrumPad id="E" audio={ heater3 } />
-      <DrumPad id="A" audio={ heater4 } />
-      <DrumPad id="S" audio={ clap } />
-      <DrumPad id="D" audio={ openHH } />
-      <DrumPad id="Z" audio={ kicknHat } />
-      <DrumPad id="X" audio={ kick } />
-      <DrumPad id="C" audio={ closedHH } />
+      <DrumPad id="Q" handleClick={ handleClick } audio={ heater1 } displayname="Heater 1"/>
+      <DrumPad id="W" handleClick={ handleClick } audio={ heater2 } displayname="Heater 2"/>
+      <DrumPad id="E" handleClick={ handleClick } audio={ heater3 } displayname="Heater 3"/>
+      <DrumPad id="A" handleClick={ handleClick } audio={ heater4 } displayname="Heater 4"/>
+      <DrumPad id="S" handleClick={ handleClick } audio={ clap } displayname="Clap"/>
+      <DrumPad id="D" handleClick={ handleClick } audio={ openHH } displayname="Open HH"/>
+      <DrumPad id="Z" handleClick={ handleClick } audio={ kicknHat } displayname="Kick n' Hat"/>
+      <DrumPad id="X" handleClick={ handleClick } audio={ kick } displayname="Kick"/>
+      <DrumPad id="C" handleClick={ handleClick } audio={ closedHH } displayname="Closed HH"/>
     </div>
-    <div id="display"></div>
+    <div id="display">{ displayText }</div>
   </div>
   );
 }
@@ -107,7 +118,7 @@ export default function App() {
       renderer.setSize( window.innerWidth, window.innerHeight );
     });
   });
-  
+
   return (
     <>
       <canvas id="background"></canvas>
@@ -118,3 +129,12 @@ export default function App() {
     </>
   )
 }
+
+document.addEventListener("keydown", (event) => {
+  const audioElement = document.querySelector(`audio[ id="${ event.key.toUpperCase() }" ]`);
+  const displayElement = document.getElementById("display");
+  if (!audioElement) return;
+
+  audioElement.play();
+  displayElement.innerText = audioElement.attributes.displayName.value;
+});

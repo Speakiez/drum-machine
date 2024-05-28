@@ -27,7 +27,10 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  translate: 0 -75px;
   padding: 8px;
+
   background-color: #874CCC;
   border: 4px solid #10439F;
   border-radius: 8px;
