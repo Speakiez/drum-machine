@@ -17,7 +17,7 @@ function SoundBoard() {
       <button id="X" className="drum-pad">X</button>
       <button id="C" className="drum-pad">C</button>
     </div>
-    <div id="display"></div>
+    <div id="display">Kick-n'-Hat</div>
   </div>
   );
 }
