@@ -3,6 +3,25 @@ import * as THREE from 'three'
 import cloudImg from './assets/vaporwaveCloud.png'
 import grid from './assets/myGrid.jpg'
 
+function SoundBoard() {
+  return (
+  <div id="drum-machine">
+    <div className="drum-pads">
+      <button id="Q" className="drum-pad">Q</button>
+      <button id="W" className="drum-pad">W</button>
+      <button id="E" className="drum-pad">E</button>
+      <button id="A" className="drum-pad">A</button>
+      <button id="S" className="drum-pad">S</button>
+      <button id="D" className="drum-pad">D</button>
+      <button id="Z" className="drum-pad">Z</button>
+      <button id="X" className="drum-pad">X</button>
+      <button id="C" className="drum-pad">C</button>
+    </div>
+    <div id="display"></div>
+  </div>
+  );
+}
+
 export default function App() {
   useEffect(() => {
     const canvas = document.getElementById("background");
@@ -71,10 +90,9 @@ export default function App() {
   return (
     <>
       <canvas id="background"></canvas>
-      <div className="background-imgs">
-        <img className="cloud left" src={cloudImg} alt="a cloud"/>
-        <img className="cloud right" src={cloudImg} alt="a cloud"/>
-      </div>
+      <img className="cloud left" src={cloudImg} alt="a cloud"/>
+      <img className="cloud right" src={cloudImg} alt="a cloud"/>
+      <SoundBoard />
       <div id="title">Drum Machine</div>
     </>
   )
