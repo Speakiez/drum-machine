@@ -1,23 +1,44 @@
 import { useEffect } from 'react'
 import * as THREE from 'three'
-import cloudImg from './assets/vaporwaveCloud.png'
-import grid from './assets/myGrid.jpg'
+import cloudImg from './assets/Images/vaporwaveCloud.png'
+import grid from './assets/Images/myGrid.jpg'
+import heater1 from './assets/Audio/Heater 1.mp3'
+import heater2 from './assets/Audio/Heater 2.mp3'
+import heater3 from './assets/Audio/Heater 3.mp3'
+import heater4 from './assets/Audio/Heater 4.mp3'
+import clap from './assets/Audio/Clap.mp3'
+import kick from './assets/Audio/Kick.mp3'
+import kicknHat from './assets/Audio/Kick-n\'-Hat.mp3'
+import openHH from './assets/Audio/Open-HH.mp3'
+import closedHH from './assets/Audio/Closed-HH.mp3'
+
+function DrumPad({ id, audio }) {
+  const handleClick = () => {
+    const audio = document.querySelector(`audio[ id="${ id }" ]`); 
+    audio.play();
+  };
+
+  return (
+    <button id={ id } className="drum-pad" onClick={ handleClick }><audio id={ id } src={ audio }></audio>{ id }</button>
+  );
+}
 
 function SoundBoard() {
+
   return (
   <div id="drum-machine">
     <div className="drum-pads">
-      <button id="Q" className="drum-pad">Q</button>
-      <button id="W" className="drum-pad">W</button>
-      <button id="E" className="drum-pad">E</button>
-      <button id="A" className="drum-pad">A</button>
-      <button id="S" className="drum-pad">S</button>
-      <button id="D" className="drum-pad">D</button>
-      <button id="Z" className="drum-pad">Z</button>
-      <button id="X" className="drum-pad">X</button>
-      <button id="C" className="drum-pad">C</button>
+      <DrumPad id="Q" audio={ heater1 } />
+      <DrumPad id="W" audio={ heater2 } />
+      <DrumPad id="E" audio={ heater3 } />
+      <DrumPad id="A" audio={ heater4 } />
+      <DrumPad id="S" audio={ clap } />
+      <DrumPad id="D" audio={ openHH } />
+      <DrumPad id="Z" audio={ kicknHat } />
+      <DrumPad id="X" audio={ kick } />
+      <DrumPad id="C" audio={ closedHH } />
     </div>
-    <div id="display">Kick-n'-Hat</div>
+    <div id="display"></div>
   </div>
   );
 }
@@ -92,8 +113,8 @@ export default function App() {
       <canvas id="background"></canvas>
       <img className="cloud left" src={cloudImg} alt="a cloud"/>
       <img className="cloud right" src={cloudImg} alt="a cloud"/>
-      <SoundBoard />
       <div id="title">Drum Machine</div>
+      <SoundBoard />
     </>
   )
 }
