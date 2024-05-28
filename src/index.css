@@ -8,7 +8,7 @@
   margin: 0;
 }
 
-#root {
+#drum-machine {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,12 +25,14 @@
   z-index: 1;
 }
 
-h1 {
-  translate: 0 125px;
+#title {
+  translate: 0 350px;
+  user-select: none;
   color: #F27BBD;
   text-align: center;
   text-shadow: 8px 8px 0#874CCC;
   font-size: 12rem;
+  font-weight: bold;
   z-index: 2;
 }
 
@@ -46,5 +48,5 @@ h1 {
 
 .cloud.right {
   top: -110px;
-  left: 1050px;
+  left: 1085px;
 }
